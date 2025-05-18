@@ -2,7 +2,8 @@ use actix_web::{get, App, HttpServer, Responder};
 
 #[get("/")]
 async fn hello() -> impl Responder {
-   format!("Hello World! 5555 ")
+   let hello_message = env::var("HELLO_MESSAGE").unwrap_or("unknown".to_string());
+   format!("Hi, {}!", hello_message)
 }
 
 #[actix_web::main] // or #[tokio::main]
